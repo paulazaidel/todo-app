@@ -1,6 +1,14 @@
+import * as style from './App.styles'
+
 function App() {
   return (
-    <h1>Todo App</h1>
+   <style.Container>
+     <style.Main>
+        <style.Header>
+          To Do List
+        </style.Header>
+     </style.Main>
+   </style.Container>
   );
 }
 
