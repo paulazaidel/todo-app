@@ -8,7 +8,7 @@ import { AddItem } from './components/AddItem'
 function App() {
   const [list, setList] = useState<Item[]>([
     {id: 1, name: 'Read a book', done: false},
-    {id: 1, name: 'Finalize presentarion', done: true}
+    {id: 2, name: 'Finalize presentarion', done: true}
   ])
 
   const handleAddItem = (itemName: string) => {
@@ -19,6 +19,15 @@ function App() {
       name: itemName,
       done: false
     })
+
+    setList(copyList)
+  }
+
+  const handleItemDoneState = (id: number, isDone: boolean) => {
+    let copyList = [...list]
+    const index = list.findIndex(ojb => ojb.id == id)
+
+    copyList[index].done = isDone
 
     setList(copyList)
   }
@@ -34,7 +43,11 @@ function App() {
 
         {
           list.map((item, index) => (
-            <ListItem key={index} item={item} />
+            <ListItem 
+              key={index} 
+              item={item} 
+              itemDoneState={handleItemDoneState}
+            />
           ))
         }
      </style.Main>
