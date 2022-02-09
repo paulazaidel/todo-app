@@ -3,6 +3,7 @@ import * as style from './App.styles'
 
 import { Item } from './types/Item'
 import { ListItem } from './components/ListITem'
+import { AddItem } from './components/AddItem'
 
 function App() {
   const [list, setList] = useState<Item[]>([
@@ -10,12 +11,26 @@ function App() {
     {id: 1, name: 'Finalize presentarion', done: true}
   ])
 
+  const handleAddItem = (itemName: string) => {
+    let copyList = [...list]
+    
+    copyList.push({
+      id: list.length + 1,
+      name: itemName,
+      done: false
+    })
+
+    setList(copyList)
+  }
+
   return (
    <style.Container>
      <style.Main>
         <style.Header>
           To Do List
         </style.Header>
+
+        <AddItem onEnter={handleAddItem}/>
 
         {
           list.map((item, index) => (
